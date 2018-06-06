@@ -3,7 +3,7 @@ services:
   # we named our first service 'web'
   jboss:
     # pass a hostname to the container (optinal)
-    hostname: goodbytes.local
+    hostname: jboss
     
     # build a custom image 
     build:
@@ -23,11 +23,12 @@ services:
     volumes:
       - ./www:/app
       
+    links:
+      - oraclebd
       
   oraclebd:
     # pass a hostname to the container (optinal)
-    hostname: goodbytes.local2
-    
+    hostname: oraclebd    
  
     # a name for easier reference
     image: sath89/oracle-12c
@@ -35,6 +36,6 @@ services:
     # map host port 8080 to container port 80
     ports:
         - "1521:1521"
-        - "8081:8080"
+        - "8090:8090"
     
  
